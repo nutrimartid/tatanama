@@ -1,0 +1,59 @@
+{% if login %}
+    {% extends "base_login.html" %}
+{% else %}
+    {% extends "base.html" %}
+{% endif %}
+{% block content %}
+        <div class="container">
+            {% if data  %}
+                <table class="SKU">
+                    <tr>
+                        <th> Nama Bundle </th>
+                        <th> SKU Bundle </th>
+                        <th> Price List NFI Bundle </th>
+                        <th> Harga Cost Bundle </th>
+                        <th> Harga Display Bundle </th>
+                    </tr>
+                    <tr>
+                        <td> </td>
+                        <td> {{data['SKU']}} </td>
+                        <td> Rp {{data['Price_List_NFI']}} </td>
+                        <td> Rp {{data['Harga_Cost']}} </td>
+                        <td> Rp {{data['Harga_Display']}} </td>
+                    </tr>
+                </table>
+                <br />
+                <table class="SKU"
+                    <tr>
+                        <th>No</th>
+                        <th>Nama Produk</th>
+                        <th>SKU Produk</th>
+                        <th>PCS Produk</th>
+                        <th>Price List NFI Produk</th>
+                        <th>Subtotal Produk</th>
+                    </tr>
+                    {% for i in range(1,8) %}
+                        {% set colname = 'Produk_' + i|string %}
+                        {% if colname in data.keys() %}
+                            <tr>
+                                <td>{{i}}</td>
+                                <td>{{data[colname]}}</td>
+                                <td>{{data['SKU_' + colname]}}</td>
+                                <td>{{data['PCS_' + colname]}}</td>
+                                <td>Rp {{data['Price_List_NFI_' + i|string]}}</td>
+                                <td>Rp {{data['Subtotal_' + colname]}}</td>
+                            </tr>
+                        {% endif %}
+                    {% endfor %}
+                </table>
+            {% endif %}
+            <div class="form-group">
+                 <form class="example" method="post" action="" 
+                 style="margin:auto;max-width:600px">
+                    <input type="text" class="form-control" placeholder="Masukkan Nama Bundle" name="nama_bundle">             
+                    <button type="submit" name="submit_button" value="submit" class="btn btn-success"> Daftarkan Bundle </button>
+                    <button type="submit" name="submit_button" value="cancel" class="btn btn-danger"> Batalkan </button>
+                </form>
+            </div>
+        </div>
+{% endblock %}

@@ -1,0 +1,86 @@
+{% extends "base_login.html" %}
+{% block content %}
+    {% if name %}
+        <table class="SKU">
+            <tr>
+                <th colspan="2""> Data Produk Single </th>
+            </tr>
+            <tr>
+                <td> Nama Produk Single </td>
+                <td> {{ name }} </td>
+            </tr>
+            <tr>
+                <td> SKU Produk Single </td>
+                <td> {{ sku }} </td>
+            </tr>
+            <tr>
+                <td> Price List NFI </td>
+                <td> Rp {{ nfi }} </td>
+            </tr>
+            <tr>
+                <td> Harga Cost </td>
+                <td> Rp {{ cost }} </td>
+            </tr>
+            <tr>
+                <td> Harga Display </td>
+                <td> Rp {{ display }} </td>
+            </tr>
+        </table>
+
+        <div class="container">
+            <form class="form-group" method="post" action=""
+                    style="margin:auto;max-width:600px">
+                    <h3>Nama Produk:</h3>
+                    {{ form.name(class_='form-control', value = name)}}
+                    <h3>SKU Produk :</h3>
+                    {{ form.sku(class_='form-control', value = sku)}}
+                    <h3>Price List NFI :</h3>
+                    {{ form.nfi(class_='form-control', value = nfi) }}
+                    <h3>Harga Cost :</h3>
+                    {{ form.cost(class_='form-control', value = cost) }}
+                    <h3>Harga Display :</h3>
+                    {{ form.display(class_='form-control', value = display) }}
+                    <h3>Kode :</h3>
+                    {{ form.code(class_='form-control', value = code) }}
+                    <button type="submit" class="btn btn-success" name="submit_button" value="submit">Submit</button>
+            </form>
+        </div>
+    {% else %}
+        <div class="form-group">
+            <form class="example" method="post" action="" 
+            style="margin:auto;max-width:600px">
+                <h3>Produk :</h3>
+                {{ form.produk1(class_='form-control') }}          
+                <button type="submit" name="submit_button" value="submit" class="btn btn-success"> Search Item </button>
+            </form>
+        </div>
+    {% endif %}
+    <script>
+            $(function() {
+                $.ajax({
+                    url: '{{ url_for("autocomplete") }}'
+                    }).done(function (data){
+                        $('#name').autocomplete({
+                            source: data,
+                            minLength: 2
+                        });
+                        $('#sku').autocomplete({
+                            source: data,
+                            minLength: 2
+                        });
+                        $('#produk1').autocomplete({
+                            source: data,
+                            minLength: 2
+                        });
+                });
+                $.ajax({
+                    url: '{{ url_for("autocompletekode") }}'
+                    }).done(function (data){
+                        $('#code').autocomplete({
+                            source: data,
+                            minLength: 1
+                        });
+                });
+            });
+    </script>
+{% endblock %}

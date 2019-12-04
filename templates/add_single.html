@@ -1,0 +1,48 @@
+{% extends "base_login.html" %}
+{% block content %}
+    <div class="container">
+        <form class="form-group" method="post" action=""
+                style="margin:auto;max-width:600px">
+                <h3>Nama Produk:</h3>
+                {{ form.name(class_='form-control')}}
+                <h3>SKU Produk :</h3>
+                {{ form.sku(class_='form-control')}}
+                <h3>Brand :</h3>
+                {{ form.brand(class_='form-control') }}
+                <h3>Price List NFI :</h3>
+                {{ form.nfi(class_='form-control') }}
+                <h3>Harga Cost :</h3>
+                {{ form.cost(class_='form-control') }}
+                <h3>Harga Display :</h3>
+                {{ form.display(class_='form-control') }}
+                <h3>Kode :</h3>
+                {{ form.code(class_='form-control') }}
+                <button type="submit" class="btn btn-success" name="submit_button" value="submit">Submit</button>
+        </form>
+    </div>
+
+    <script>
+            $(function() {
+                $.ajax({
+                    url: '{{ url_for("autocomplete") }}'
+                    }).done(function (data){
+                        $('#name').autocomplete({
+                            source: data,
+                            minLength: 2
+                        });
+                        $('#sku').autocomplete({
+                            source: data,
+                            minLength: 2
+                        });
+                });
+                $.ajax({
+                    url: '{{ url_for("autocompletekode") }}'
+                    }).done(function (data){
+                        $('#code').autocomplete({
+                            source: data,
+                            minLength: 1
+                        });
+                });
+            });
+    </script>
+{% endblock %}

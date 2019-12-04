@@ -1,0 +1,46 @@
+body {
+  font-family: Arial;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+h1 {
+    padding-bottom:10px;
+}
+
+table.SKU {
+  font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  width: 80%;
+  margin-left:auto; 
+  margin-right:auto;
+  margin-top:12px;
+  margin-bottom:12px;
+}
+
+table.SKU td, table.SKU th {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+table.SKU tr:nth-child(even){background-color: #f2f2f2;}
+
+table.SKU tr:hover {background-color: #ddd;}
+
+table.SKU th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: #4CAF50;
+  color: white;
+}
+
+.form-control {
+    margin-bottom:12px;
+}
+
+h3 {
+  font-size:medium;
+}

@@ -9,14 +9,26 @@
                 {{ form.sku(class_='form-control')}}
                 <h3>Brand :</h3>
                 {{ form.brand(class_='form-control') }}
+                <h3>Sub Brand :</h3>
+                {{ form.sub(class_='form-control') }}
                 <h3>Price List NFI :</h3>
                 {{ form.nfi(class_='form-control') }}
                 <h3>Harga Cost :</h3>
                 {{ form.cost(class_='form-control') }}
                 <h3>Harga Display :</h3>
                 {{ form.display(class_='form-control') }}
+                <h3>Harga Organik :</h3>
+                {{ form.organik(class_='form-control') }}
                 <h3>Kode :</h3>
                 {{ form.code(class_='form-control') }}
+                <h3>Parent Item :</h3>
+                {{ form.parent(class_='form-control') }}
+                <h3>Nama Oracle :</h3>
+                {{ form.nama_oracle(class_='form-control') }}
+                <h3>Berat :</h3>
+                {{ form.berat(class_='form-control') }}
+                <h3>Volume :</h3>
+                {{ form.volume(class_='form-control') }}
                 <button type="submit" class="btn btn-success" name="submit_button" value="submit">Submit</button>
         </form>
     </div>
@@ -34,11 +46,23 @@
                             source: data,
                             minLength: 2
                         });
+                        $('#parent').autocomplete({
+                            source: data,
+                            minLength: 2
+                        });
                 });
                 $.ajax({
                     url: '{{ url_for("autocompletekode") }}'
                     }).done(function (data){
                         $('#code').autocomplete({
+                            source: data,
+                            minLength: 1
+                        });
+                });
+                $.ajax({
+                    url: '{{ url_for("autocompletesub") }}'
+                    }).done(function (data){
+                        $('#sub').autocomplete({
                             source: data,
                             minLength: 1
                         });

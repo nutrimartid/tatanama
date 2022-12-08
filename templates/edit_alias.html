@@ -1,0 +1,81 @@
+{% if login %}
+    {% extends "base_login.html" %}
+{% else %}
+    {% extends "base.html" %}
+{% endif %}
+{% block content %}
+    {% if data %}
+        <table class="SKU">
+            <tr>
+                <th colspan="2"> Data Produk Single </th>
+            </tr>
+            <tr>
+                <td> Nama Produk Single </td>
+                <td> {{ name }} </td>
+            </tr>
+            <tr>
+                <td> SKU Produk Single </td>
+                <td> {{ sku }} </td>
+            </tr>
+        </table>
+
+        <table class="SKU">
+            <tr>
+                <th>No</th>
+                <th>Alias Nama Produk</th>
+                <th>Alias SKU Produk</th>
+            </tr>
+            {% for i in range(1, len) %}
+                {% set colname = 'Alias_Nama_' + i|string %}
+                {% set colsku = 'Alias_SKU_' + i|string %}
+                {% if colname in data.keys() %}
+                    {% if data[colname]|string != '' and data[colname] != None %}
+                        <tr>
+                            <td>{{i}}</td>
+                            <td>{{data[colname]}}</td>
+                            <td>{{data[colsku]}}</td>
+                        </tr>
+                    {% elif data[colsku]|string != '' and data[colsku] != None%}
+                        <tr>
+                            <td>{{i}}</td>
+                            <td>{{data[colname]}}</td>
+                            <td>{{data[colsku]}}</td>
+                        </tr>
+                    {% endif %}
+                {% endif %}
+            {% endfor %}
+        </table>
+
+        <div class="container">
+            <form class="form-group" method="post" action=""
+                    style="margin:auto;max-width:600px">
+                    <h3>Alias Nama Produk:</h3>
+                    {{ form.name(class_='form-control')}}
+                    <h3>Alias SKU Produk :</h3>
+                    {{ form.sku(class_='form-control')}}
+                    <button type="submit" class="btn btn-success" name="submit_button" value="submit">Submit</button>
+            </form>
+        </div>
+    {% else %}
+        <div class="form-group">
+            <form class="example" method="post" action=""
+            style="margin:auto;max-width:600px">
+                <h3>Produk :</h3>
+                {{ form.produk1(class_='form-control') }}
+                <button type="submit" name="submit_button" value="submit" class="btn btn-success"> Search Item </button>
+            </form>
+        </div>
+    {% endif %}
+    <script>
+            $(function() {
+                $.ajax({
+                    url: '{{ url_for("autocompleteall") }}'
+                    }).done(function (data){
+                        $('#produk1').autocomplete({
+                            source: data,
+                            minLength: 2
+                        });
+                });
+            });
+    </script>
+{% endblock %}

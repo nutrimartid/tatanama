@@ -16,7 +16,7 @@
                         <!--<th> Harga Organik Bundle </th>-->
                         <th> Berat Bundle </th>
                         <!--<th> Volume Bundle </th>-->
-                        <th> Janjian Harga </th>
+                        <th></th>
                     </tr>
                     <tr>
                         <td> {{data['Nama_Produk']}} </td>
@@ -27,7 +27,21 @@
                         <!--<td> Rp {{data['Harga_Organik']}} </td>-->
                         <td> {{'%0.4f'|format(data['Berat']|float)}} </td>
                         <!--<td> {{'%0.4f'|format(data['Volume']|float)}} </td>-->
-                        <td><a class="btn btn-primary" href="https://nutrimartevent.pythonanywhere.com/janjianharga?item_name={{data['Nama_Produk']}}&item_sku={{data['SKU']}}&item_pl={{data['Price_List_NFI']}}" role="btn btn-primary btn-sm">Janjian Harga</a></td>
+                        <td>
+                            <a class="dropdown-item" href="https://nutrimartevent.pythonanywhere.com/janjianharga?item_name={{data['Nama_Produk']}}&item_sku={{data['SKU']}}&item_pl={{data['Price_List_NFI']}}"><img src='/static/discount.png' class="img-thumbnail" style="width: 30px;"></a>
+                            <a class="dropdown-item" href="https://nutrimartevent.pythonanywhere.com/proddesc/{{data['SKU']}}"><img src='/static/image-gallery.png' class="img-thumbnail" style="width: 30px;"></a>
+                            <!--<div class="dropdown">-->
+                            <!--  <button class="btn btn-secondary btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">-->
+                            <!--    Tools-->
+                            <!--  </button>-->
+                            <!--  <ul class="dropdown-menu">-->
+                            <!--    <li><a class="dropdown-item" href="https://nutrimartevent.pythonanywhere.com/janjianharga?item_name={{data['Nama_Produk']}}&item_sku={{data['SKU']}}&item_pl={{data['Price_List_NFI']}}">Janjian Harga</a></li>-->
+                            <!--    <li><a class="dropdown-item" href="https://nutrimartevent.pythonanywhere.com/proddesc/{{data['SKU']}}">Konten</a></li>-->
+                            <!--    <li><img src='/static/discount.png'></li>-->
+                                <!--<li><a class="dropdown-item" href="#">Something else here</a></li>-->
+                            <!--  </ul>-->
+                            <!--</div>-->
+                        </td>
 
                     </tr>
                 </table>

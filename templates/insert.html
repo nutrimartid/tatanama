@@ -39,7 +39,7 @@
                         <!--<th>Subtotal Produk</th>-->
                         <th>Berat Produk</th>
                         <th>Volume Produk</th>
-                        <th>Janjian harga</th>
+                        <th></th>
                     </tr>
                     {% for i in range(1,8) %}
                         {% set colname = 'Produk_' + i|string %}
@@ -54,7 +54,11 @@
                                     <!--<td>Rp {{data['Subtotal_' + colname]}}</td>-->
                                     <td>{{'%0.4f'|format(data['Berat_' + i|string]|float)}}</td>
                                     <td>{{'%0.4f'|format(data['Volume_' + i|string]|float)}}</td>
-                                    <td><a class="btn btn-primary btn-sm" href="https://nutrimartevent.pythonanywhere.com/janjianharga?item_name={{data[colname]}}&item_sku={{data['SKU_' + colname]}}&item_pl={{data['Price_List_NFI_' + i|string]}}" role="button-sm">Janjian Harga</a></td>
+                                    <td>
+                                        <!--<a class="btn btn-primary btn-sm" href="https://nutrimartevent.pythonanywhere.com/janjianharga?item_name={{data[colname]}}&item_sku={{data['SKU_' + colname]}}&item_pl={{data['Price_List_NFI_' + i|string]}}" role="button-sm">Janjian Harga</a>-->
+                                        <a href="https://nutrimartevent.pythonanywhere.com/janjianharga?item_name={{data[colname]}}&item_sku={{data['SKU_' + colname]}}&item_pl={{data['Price_List_NFI_' + i|string]}}"><img src='/static/discount.png' class="img-thumbnail" style="width: 30px;" ></a>
+                                        <a href="https://nutrimartevent.pythonanywhere.com/proddesc/{{data['SKU_' + colname]}}"><img src='/static/image-gallery.png' class="img-thumbnail" style="width: 30px;"></a>
+                                    </td>
                                 </tr>
                             {% endif %}
                         {% endif %}

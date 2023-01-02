@@ -28,7 +28,7 @@
                         <td> {{'%0.4f'|format(data['Berat']|float)}} </td>
                         <!--<td> {{'%0.4f'|format(data['Volume']|float)}} </td>-->
                         <td>
-                            <a class="dropdown-item" href="https://nutrimartevent.pythonanywhere.com/janjianharga?item_name={{data['Nama_Produk']}}&item_sku={{data['SKU']}}&item_pl={{data['Price_List_NFI']}}"><img src='/static/discount.png' class="img-thumbnail" style="width: 30px;"></a>
+                            <a class="dropdown-item" href="https://nutrimartevent.pythonanywhere.com/janjianharga?item_name={{data['Nama_Produk']| replace('&','%26')}}&item_sku={{data['SKU']}}&item_pl={{data['Price_List_NFI']}}"><img src='/static/discount.png' class="img-thumbnail" style="width: 30px;"></a>
                             <a class="dropdown-item" href="https://nutrimartevent.pythonanywhere.com/proddesc/{{data['SKU']}}"><img src='/static/image-gallery.png' class="img-thumbnail" style="width: 30px;"></a>
                             <!--<div class="dropdown">-->
                             <!--  <button class="btn btn-secondary btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">-->

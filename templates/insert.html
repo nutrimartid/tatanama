@@ -55,9 +55,17 @@
                                     <td>{{'%0.4f'|format(data['Berat_' + i|string]|float)}}</td>
                                     <td>{{'%0.4f'|format(data['Volume_' + i|string]|float)}}</td>
                                     <td>
+                                        <div class="row icon">
+                                            <div class="col icon">
+                                                <a href="https://nutrimartevent.pythonanywhere.com/janjianharga?item_name={{data[colname] | replace('&','%26')}}&item_sku={{data['SKU_' + colname]}}&item_pl={{data['Price_List_NFI_' + i|string]}}"><img src='/static/discount.png' class="img-thumbnail" style="width: 30px;" ></a>
+                                            </div>
+                                            <div class="col icon">
+                                                <a href="https://nutrimartevent.pythonanywhere.com/proddesc/{{data['SKU_' + colname]}}"><img src='/static/image-gallery.png' class="img-thumbnail" style="width: 30px;"></a>
+                                            </div>
+                                        </div>
                                         <!--<a class="btn btn-primary btn-sm" href="https://nutrimartevent.pythonanywhere.com/janjianharga?item_name={{data[colname]}}&item_sku={{data['SKU_' + colname]}}&item_pl={{data['Price_List_NFI_' + i|string]}}" role="button-sm">Janjian Harga</a>-->
-                                        <a href="https://nutrimartevent.pythonanywhere.com/janjianharga?item_name={{data[colname] | replace('&','%26')}}&item_sku={{data['SKU_' + colname]}}&item_pl={{data['Price_List_NFI_' + i|string]}}"><img src='/static/discount.png' class="img-thumbnail" style="width: 30px;" ></a>
-                                        <a href="https://nutrimartevent.pythonanywhere.com/proddesc/{{data['SKU_' + colname]}}"><img src='/static/image-gallery.png' class="img-thumbnail" style="width: 30px;"></a>
+                                        
+                                        
                                     </td>
                                 </tr>
                             {% endif %}

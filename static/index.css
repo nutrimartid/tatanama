@@ -44,3 +44,7 @@ table.SKU th {
 h3 {
   font-size:medium;
 }
+
+.img-thumbnail:hover{
+  border-color: green
+}

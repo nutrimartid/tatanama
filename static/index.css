@@ -48,3 +48,8 @@ h3 {
 .img-thumbnail:hover{
   border-color: green
 }
+
+.icon{
+  padding: 0px !important;
+  margin: 1px !important;
+}

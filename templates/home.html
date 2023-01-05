@@ -13,19 +13,24 @@
 
     </head>
     <body>
-        <div class="Container">
-            <form class="form-group" method="post" style="margin:auto;max-width:600px">
-                <label>Username</label>
-                <input type="text" class="form-control" name="username" placeholder="Enter Username">
-                <label>Password</label>
-                <input type="password" class="form-control" name="password" placeholder="Enter password">
-                {% if msg %}
-                    <div class="alert alert-danger" role="alert">
-                        {{ msg }}
-                    </div>
-                {% endif %}
-                <button type="submit" class="btn btn-primary"> Submit </button>
-            </form>
+        <div class="loginform">
+            <div class="container login">
+                <h3>Login Tatanama</h3>
+                <br>
+                <form class="form-group" method="post" style="margin:auto;max-width:600px">
+                    <label>Username</label>
+                    <input type="text" class="form-control" name="username" placeholder="Enter Username">
+                    <label>Password</label>
+                    <input type="password" class="form-control" name="password" placeholder="Enter password">
+                    {% if msg %}
+                        <div class="alert alert-danger" role="alert">
+                            {{ msg }}
+                        </div>
+                    {% endif %}
+                    <button type="submit" class="btn btn-primary"> Submit </button>
+                </form>
+            </div>
         </div>
+
     </body>
 </html>

@@ -52,6 +52,7 @@ h3 {
 .icon{
   padding: 0px !important;
   margin: 1px !important;
+  min-width: 25px;
 }
 
 .loginform{

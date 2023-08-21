@@ -1868,7 +1868,7 @@ def logout():
     else :
         return redirect(url_for('search'))
 
-@app.route('/janjianharga')
+@app.route('/toolsecom')
 def janjianharga():
     return render_template('janjianharga.html')
 

@@ -56,15 +56,15 @@
                                     <td>{{'%0.4f'|format(data['Volume_' + i|string]|float)}}</td>
                                     <td>
                                         <div class="dropdown">
-                                            <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                            <button class="btn btn-secondary btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                                               Menu
                                             </button>
                                             <ul class="dropdown-menu">
                                               <li>
-                                                <a href="http://event.l-men.com/janjianharga?item_name={{data[colname] | replace('&','%26')}}&item_sku={{data['SKU_' + colname]}}&item_pl={{data['Price_List_NFI_' + i|string]}}"><img src='/static/discount.png' class="img-thumbnail" style="width: 30px;" ></a>
+                                                <a href="http://event.l-men.com/janjianharga?item_name={{data[colname] | replace('&','%26')}}&item_sku={{data['SKU_' + colname]}}&item_pl={{data['Price_List_NFI_' + i|string]}}">Janjian Harga</a>
                                               </li>
                                               <li>
-                                                <a href="http://event.l-men.com/proddesc/{{data['SKU_' + colname]}}"><img src='/static/image-gallery.png' class="img-thumbnail" style="width: 30px;"></a>
+                                                <a href="http://event.l-men.com/proddesc/{{data['SKU_' + colname]}}">Konten</a>
                                               </li>
                                               <li><a class="dropdown-item" href="#">Flush Out</a></li>
                                             </ul>

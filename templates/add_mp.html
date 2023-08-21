@@ -28,14 +28,30 @@
                         <td> {{'%0.4f'|format(data['Berat']|float)}} </td>
                         <!--<td> {{'%0.4f'|format(data['Volume']|float)}} </td>-->
                         <td>
-                            <div class="row icon">
+                            <div class="dropdown">
+                                <button class="btn btn-secondary btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                  Menu
+                                </button>
+                                <ul class="dropdown-menu">
+                                  <li>
+                                    <a class="dropdown-item" href="http://event.l-men.com/janjianharga?item_name={{data['Nama_Produk']| replace('&','%26')}}&item_sku={{data['SKU']}}&item_pl={{data['Price_List_NFI']}}">Janjian Harga</a>
+                                  </li>
+                                  <li>
+                                    <a class="dropdown-item" href="http://event.l-men.com/proddesc/{{data['SKU']}}">Konten</a>
+                                  </li>
+                                  <li>
+                                    <a class="dropdown-item" href="#">Flush Out</a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <!-- <div class="row icon">
                                 <div class="col icon">
                                     <a class="dropdown-item" href="http://event.l-men.com/janjianharga?item_name={{data['Nama_Produk']| replace('&','%26')}}&item_sku={{data['SKU']}}&item_pl={{data['Price_List_NFI']}}"><img src='/static/discount.png' class="img-thumbnail" style="width: 30px;"></a>
                                 </div>
                                 <div class="col icon">
                                     <a class="dropdown-item" href="http://event.l-men.com/proddesc/{{data['SKU']}}"><img src='/static/image-gallery.png' class="img-thumbnail" style="width: 30px;"></a>
                                 </div>
-                            </div>
+                            </div> -->
                             
                             
                             <!--<div class="dropdown">-->

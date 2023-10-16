@@ -962,7 +962,7 @@ def search():
                     pass
         else :
             for i in range(df.shape[0]):
-                if (df['Brand'][i] == 'Bundle') and ('C' not in df['SKU'][i]):
+                if (df['Brand'][i] == 'Bundle') :#and ('C' not in df['SKU'][i])
                     sql_produk = []
                     sql_sku = []
                     sql_pcs = []

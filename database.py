@@ -49,6 +49,10 @@ data_SKU = data_SKU[data_SKU['SKU'].notnull()]
 df['SKU'] = df['SKU'].astype(str)
 data_SKU['SKU'] = data_SKU['SKU'].astype(str).str.replace('.0', '', regex = False)
 
+data_SKUe=data_SKU.copy()
+data_SKUe['SKU']="(E)"+data_SKUe['SKU']
+data_SKU=pd.concat([data_SKU,data_SKUe]).reset_index(drop=True)
+
 # for i in range(df.shape[0]):
 #     if str(df['SKU'][i]) in data_SKU['SKU'].astype(str).values:
 #         id = df['ID'][i]

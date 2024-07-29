@@ -22,10 +22,7 @@
         <td>{{i.SKU}}</td>
         <td>{{i.Brand}}</td>
          <td>
-         {% if i.Active=='Active' or i.Active=='active' %}
           <a class="btn btn-outline-danger btn-sm" href="/deactive/{{i.ID}}" role="button">INACTIVE</a>
-          {% endif %}
-          <!--<a class="btn btn-outline-warning btn-sm" href="" role="button">Edit</a>-->
         </td>
       </tr>
       {% endfor %}

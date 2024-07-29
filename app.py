@@ -1882,7 +1882,7 @@ def logout():
 @app.route('/toolsecom')
 def janjianharga():
     db = MySQLdb.connect(host = "tatanama.mysql.pythonanywhere-services.com", user = "tatanama", passwd = "satuduatiga", db = "tatanama$data_sku")
-    query = "select * from data_sku where brand !='Bundle' and active='Active'"
+    query = "select * from data_sku where (brand !='Bundle' and active !='Inactive') or (brand !='Bundle' and active is Null);"
     df = psql.read_sql(query, con = db).to_dict(orient='records')
     print(df[0])
     return render_template('janjianharga.html',df=df)

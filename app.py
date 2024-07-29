@@ -1,7 +1,7 @@
 from flask import Flask, render_template, request, redirect, url_for, session, Response, make_response, send_file
 import pandas as pd
 import pandas.io.sql as psql
-import re,json,io,MySQLdb
+import re,json,io,MySQLdb,time
 from wtforms import TextField, Form, SelectField, RadioField
 from wtforms.validators import InputRequired
 from flask_bootstrap import Bootstrap
@@ -11,12 +11,15 @@ from flask_restful import Resource,Api
 
 app = Flask(__name__)
 
-app.config['SQLALCHEMY_POOL_RECYCLE'] = 299
+app.config['SQLALCHEMY_POOL_RECYCLE'] = 280
+app.config['SQLALCHEMY_ENGINE_OPTIONS'] = {'pool_pre_ping': True}
 db = MySQLdb.connect(host = "tatanama.mysql.pythonanywhere-services.com", user = "tatanama", passwd = "satuduatiga", db = "tatanama$data_sku")
 db.set_character_set('utf8')
 query = "select * from data_sku"
 api=Api(app)
 df = psql.read_sql(query, con = db)
+
+# db2 = SQLAlchemy(app)
 
 # connect_string = 'mysql://root:Alazhar4!@Localhost/data_sku'
 
@@ -827,13 +830,14 @@ def updatesku():
 
 @app.route('/', methods = ['GET', 'POST'])
 def main():
+    # time.sleep(30)
     if 'user' in session:
         return redirect(url_for('search'))
     if request.method == 'POST' and 'username' in request.form and 'password' in request.form:
         username = request.form['username']
         password = request.form['password']
 
-        if username == 'ecommerce' and password == 'ecommerce':
+        if username == 'ecommerce' and password == 'ttnmecom24':
             session['user'] = True
             session['messages'] = 'Loggin Successfully'
             return redirect(url_for('search'))
@@ -844,6 +848,7 @@ def main():
 
 @app.route('/Search', methods = ['GET', 'POST'])
 def search():
+    # time.sleep(30)
     user_session = False
     if 'user' not in session:
         return redirect(url_for('main'))
@@ -1019,11 +1024,14 @@ def search():
         if found:
             if dict_result['MP_Eksklusif'] != None:
                 msg = 'Bundle ekslusif di ' + dict_result['MP_Eksklusif']
+                # time.sleep(30)
                 return render_template('search.html', data = dict_result, form = form, login = login, msg = msg)
             else :
                 session['dict_result_search'] = dict_result
+                # time.sleep(30)
                 return redirect(url_for('add_MP'))
         return redirect(url_for('insert'))
+    # time.sleep(30)
     return render_template('search.html', form=form, msg = msg, login = login)
 
 @app.route('/add_MP', methods = ['GET', 'POST'])
@@ -1058,8 +1066,10 @@ def add_MP():
         session['messages'] = 'Bundle Upload Successfully'
         return redirect(url_for('search'))
     if len(list_MP) == 0:
+        # time.sleep(30)
         return render_template('add_mp.html', data = dict_result_search, login = login, form = form)
     else :
+        # time.sleep(30)
         return render_template('add_mp.html', data = dict_result_search, login = login, form = form, list_MP = list_MP)
 
 
@@ -1228,6 +1238,7 @@ def add_single():
             list_auto = list_auto + df[df['Brand']!='Bundle']['Nama_Produk'].to_list()
             return redirect(url_for('search'))
         return render_template('add_single.html', form = form)
+    # time.sleep(30)
     return redirect(url_for('main'))
 
 @app.route('/edit_single', methods=['GET', 'POST'])
@@ -1851,7 +1862,7 @@ def login():
         username = request.form['username']
         password = request.form['password']
 
-        if username == 'nutrifood' and password == 'nutrifood':
+        if username == 'nutrifood' and password == 'ttnmnfi24':
             session['loggedin'] = True
             session['messages'] = 'Loggin Successfully'
             return redirect(url_for('search'))
@@ -1870,7 +1881,19 @@ def logout():
 
 @app.route('/toolsecom')
 def janjianharga():
-    return render_template('janjianharga.html')
+    db = MySQLdb.connect(host = "tatanama.mysql.pythonanywhere-services.com", user = "tatanama", passwd = "satuduatiga", db = "tatanama$data_sku")
+    query = "select * from data_sku where brand !='Bundle' and active='Active'"
+    df = psql.read_sql(query, con = db).to_dict(orient='records')
+    print(df[0])
+    return render_template('janjianharga.html',df=df)
+
+
+@app.route('/deactive/<id>')
+def deactive(id):
+    sql = "UPDATE data_sku SET active = 'Inactive' WHERE ID = '{}'".format(id)
+    db.cursor().execute(sql)
+    db.commit()
+    return redirect(url_for('janjianharga'))
 
 
 # @app.route('/add_alias_gudang')

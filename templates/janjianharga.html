@@ -1,17 +1,48 @@
 {% extends "base.html" %}
 {% block content %}
 <div class='container'>
-    <h1>Tools Ecom NFI hehe</h1>
-    <ol>
-        <li>
-            <a href="https://tatanama.pythonanywhere.com">Tatanama</a>            
-        </li>
-        <li>
-            <a href="http://event.l-men.com/listjanjianharga">Janjian Harga</a>
-        </li>
-        <li>
-            <a href="https://nutrimartevent.pythonanywhere.com/">Stok Tokopedia</a>
-        </li>
-    </ol>
+
+<h1>Produk Pruning</h1>
+<p>Klik "Inactive" supaya produk gk muncul di search. Makasih !</p>
+
+
+  <table id="tabeljanjian3" class="table table-striped table-hover">
+    <thead>
+      <tr>
+        <th>Nama Produk</th>
+        <th>SKU</th>
+        <th>Brand</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for i in df %}
+      <tr>
+        <td>{{i.Nama_Produk}}</td>
+        <td>{{i.SKU}}</td>
+        <td>{{i.Brand}}</td>
+         <td>
+         {% if i.Active=='Active' or i.Active=='active' %}
+          <a class="btn btn-outline-danger btn-sm" href="/deactive/{{i.ID}}" role="button">INACTIVE</a>
+          {% endif %}
+          <!--<a class="btn btn-outline-warning btn-sm" href="" role="button">Edit</a>-->
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+
+
 </div>
+
+<script type="text/javascript" charset="utf8" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.js"></script>
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.25/js/dataTables.bootstrap5.js"></script>
+<script>
+  $(document).ready(function(){$('table').DataTable();});
+</script>
 {% endblock %}
+
+<!--{% block scripts %}-->
+
+<!--{% endblock %}-->
